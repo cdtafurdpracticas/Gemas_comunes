@@ -1,0 +1,92 @@
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:9
+  [1m[35m (135.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (124.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreatePosts (20190709050042)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "image" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190709050042_create_posts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190709050042"]]
+  ↳ bin/rails:9
+  [1m[35m (113.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-09 05:00:46.265537"], ["updated_at", "2019-07-09 05:00:46.265537"]]
+  ↳ bin/rails:9
+  [1m[35m (90.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2019-07-09 00:22:44 -0500
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/juanpablo/.rvm/gems/ruby-2.4.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" ORDER BY created_at DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/views/posts/index.html.erb:3
+  Rendered collection of templates [0 times] (0.0ms)
+  Rendered posts/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 745ms (Views: 723.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2019-07-09 00:22:46 -0500
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (125.2ms)
+  Rendered posts/new.html.erb within layouts/application (126.9ms)
+Completed 200 OK in 167ms (Views: 157.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2019-07-09 00:22:57 -0500
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"foYk0JayMmYOhF0QQxRv4721E/WlldAcBAncrgbPO+ej/e6TG2hCuQAF4qhY8Sv+f+aEDQo4EBeBc64nGCvUFA==", "post"=>{"title"=>"asdfsdfsaf", "body"=>"asdfsadfasdfasdf", "image"=>#<ActionDispatch::Http::UploadedFile:0x007fab3c11c7b0 @tempfile=#<Tempfile:/tmp/RackMultipart20190709-17360-1rbtkz6.jpeg>, @original_filename="gatitu.jpeg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"post[image]\"; filename=\"gatitu.jpeg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Post"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:22
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "asdfsdfsaf"], ["body", "asdfsadfasdfasdf"], ["image", "gatitu.jpeg"], ["created_at", "2019-07-09 05:22:57.032786"], ["updated_at", "2019-07-09 05:22:57.032786"]]
+  ↳ app/controllers/posts_controller.rb:22
+  [1m[35m (149.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:22
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 167ms (ActiveRecord: 150.5ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2019-07-09 00:22:57 -0500
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" ORDER BY created_at DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/views/posts/index.html.erb:3
+  Rendered collection of posts/_post.html.erb [1 times] (1.0ms)
+  Rendered posts/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 37ms (Views: 34.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/posts/1.pdf" for 127.0.0.1 at 2019-07-09 00:23:03 -0500
+Processing by PostsController#show as PDF
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:47
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:9
+  Rendering posts/show.pdf.erb
+  Rendered posts/show.pdf.erb (1.5ms)
+[wicked_pdf]: ["/home/juanpablo/.rvm/gems/ruby-2.4.0/bin/wkhtmltopdf", "file:////tmp/wicked_pdf20190709-17360-2nehih.html", "/tmp/wicked_pdf_generated_file20190709-17360-19i3874.pdf"]
+Completed 500 Internal Server Error in 587ms (ActiveRecord: 0.3ms)
+
+
+  
+RuntimeError (Failed to execute:
+["/home/juanpablo/.rvm/gems/ruby-2.4.0/bin/wkhtmltopdf", "file:////tmp/wicked_pdf20190709-17360-2nehih.html", "/tmp/wicked_pdf_generated_file20190709-17360-19i3874.pdf"]
+Error: PDF could not be generated!
+ Command Error: /home/juanpablo/.rvm/gems/ruby-2.4.0/gems/wkhtmltopdf-binary-edge-0.12.5.0/libexec/wkhtmltopdf-linux-amd64: error while loading shared libraries: libpng12.so.0: cannot open shared object file: No such file or directory
+):
+  
+app/controllers/posts_controller.rb:12:in `block (2 levels) in show'
+app/controllers/posts_controller.rb:10:in `show'
